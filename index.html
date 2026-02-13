@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRAZY Valentine! 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0844;
+            --secondary: #ffb199;
+            --accent: #ff4b6e;
+            --bg-dark: #1a0b10;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: radial-gradient(circle at center, #ffb199, #ff0844);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.1s;
+        }
+
+        /* Screen Shake Animation */
+        .shake-hard {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-4px, 0, 0); }
+            20%, 80% { transform: translate3d(8px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-16px, 0, 0); }
+            40%, 60% { transform: translate3d(16px, 0, 0); }
+        }
+
+        /* Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 4px solid white;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            transition: all 0.3s;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Container for buttons to handle overlap */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 80px; /* Prevent layout shift */
+            position: relative;
+        }
+
+        /* Buttons */
+        button {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Yes Button */
+        .btn-yes {
+            background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+            color: white;
+            /* Will be scaled up via JS */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 117, 140, 0.6);
+        }
+
+        /* No Button - The Crazy One */
+        .btn-no {
+            background: white;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+        }
+
+        /* Hover Bounce Animation */
+        .btn-no:hover {
+            animation: crazyBounce 0.4s infinite;
+            cursor: not-allowed;
+        }
+
+        @keyframes crazyBounce {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-5deg); }
+            50% { transform: translateY(0) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Floating Elements */
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Success State */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .success-overlay h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success-overlay img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 2rem 1rem; width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Floating Hearts -->
+    <div class="floating-hearts" id="heartsContainer"></div>
+
+    <!-- Main Card -->
+    <div class="card" id="mainCard">
+        <h1 id="questionText">Will you be my Valentine?</h1>
+        <p class="subtitle" id="subText">It's a simple question...</p>
+        
+        <div class="btn-container">
+            <button class="btn-yes" id="yesBtn">YES! ❤️</button>
+            <button class="btn-no" id="noBtn">NO</button>
+        </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-overlay" id="successScreen">
+        <h2>YAY! I KNEW IT! ❤️</h2>
+        <img src="https://picsum.photos/seed/crazyvalentine/300/300" alt="Happy Valentine">
+        <p style="font-size: 1.5rem; margin-top: 20px; color: #555;">You made the right choice!</p>
+    </div>
+
+    <script>
+        // --- Configuration & State ---
+        const questions = [
+            "Will you be my Valentine?",
+            "Are you sure about that?",
+            "Really, really sure?",
+            "Think about the kittens! 😿",
+            "Don't break my heart...",
+            "I'm gonna cry real tears...",
+            "Okay, last chance!",
+            "Are you absolutely 100% positive?",
+            "Please? I'll buy you pizza 🍕",
+            "I'm begging you! 🥺",
+            "Fiiiiine... (Just click yes)",
+            "Click Yes or the button explodes!"
+        ];
+
+        let currentQuestionIndex = 0;
+        let yesButtonScale = 1;
+
+        // --- DOM Elements ---
+        const questionText = document.getElementById('questionText');
+        const subText = document.getElementById('subText');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const body = document.body;
+        const mainCard = document.getElementById('mainCard');
+        const successScreen = document.getElementById('successScreen');
+        const heartsContainer = document.getElementById('heartsContainer');
+
+        // --- Sound Effects (Synth) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'no') {
+                // Womp womp sad sound
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(200, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.3);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'yes') {
+                // Happy major chord arpeggio
+                const now = audioCtx.currentTime;
+                [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                    const osc = audioCtx.createOscillator();
+                    const gn = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+                    osc.connect(gn);
+                    gn.connect(audioCtx.destination);
+                    osc.start(now + i * 0.1);
+                    gn.gain.setValueAtTime(0, now + i * 0.1);
+                    gn.gain.linearRampToValueAtTime(0.2, now + i * 0.1 + 0.05);
+                    gn.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.5);
+                    osc.stop(now + i * 0.1 + 0.5);
+                });
+            }
+        }
+
+        // --- Core Logic ---
+
+        // 1. Handle "No" Button Click
+        noBtn.addEventListener('click', () => {
+            // Update Question Text
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                questionText.innerText = questions[currentQuestionIndex];
+            } else {
+                questionText.innerText = "PLEASE CLICK YES!";
+                questionText.style.color = "#ff0000"; // Turn red
+            }
+
+            // Scale Up Yes Button
+            yesButtonScale += 0.3;
+            yesBtn.style.transform = `scale(${yesButtonScale})`;
+            
+            // Random Subtext
+            const excuses = ["Why are you doing this?", "I'm nice!", "Look at my button size!", "Just do it!"];
+            subText.innerText = excuses[Math.floor(Math.random() * excuses.length)];
+
+            // Screen Shake Effect
+            body.classList.remove('shake-hard');
+            void body.offsetWidth; // Trigger reflow
+            body.classList.add('shake-hard');
+
+            // Play Sound
+            playSound('no');
+
+            // Chaos Mode: Change background color slightly
+            const hue = Math.floor(Math.random() * 360);
+            // document.body.style.background = `hsl(${hue}, 70%, 80%)`; // Optional: Psychodelic background
+        });
+
+        // 2. Handle "Yes" Button Click
+        yesBtn.addEventListener('click', () => {
+            playSound('yes');
+            successScreen.style.display = 'flex';
+            launchConfetti();
+        });
+
+        // --- Background Visuals ---
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            
+            heartsContainer.appendChild(heart);
+
+            // Cleanup
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // --- Confetti Logic (Simple Canvas implementation) ---
+        function launchConfetti() {
+            const count = 200;
+            const defaults = { origin: { y: 0.7 } };
+            
+            // Since we are standalone, using a simple canvas loop instead of external lib
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '200';
+            document.body.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const pieces = [];
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff'];
+
+            for(let i=0; i<count; i++) {
+                pieces.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    w: Math.random() * 10 + 5,
+                    h: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 20,
+                    vy: (Math.random() - 0.5) * 20 - 5,
+                    gravity: 0.5
+                });
+            }
+
+            function update() {
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                let active = false;
+                pieces.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    if(p.y < canvas.height) active = true;
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.w, p.h);
+                });
+                if(active) requestAnimationFrame(update);
+                else canvas.remove();
+            }
+            update();
+        }
+
+    </script>
+</body>
+</html>
