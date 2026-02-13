@@ -1,52 +1,96 @@
-# 💘 Will You Be My Valentine?
+::: {align="center"}
+# 💖 Will You Be My Valentine?
 
-A simple and sweet interactive Valentine's webpage built with HTML.\
-Ask someone a heartfelt question --- *"Will you be my Valentine?"* ❤️
+### A Cute & Interactive Valentine Web Experience
 
-## 💡 About
-
-This project shows a fun Valentine's message with simple choices for the
-user:
-
--   **YES! ❤️**
--   **NO**
-
-After choosing *YES*, a follow‑up happy message appears.\
-It's a charming little way to share some love! 💞
-
-## 📂 Files
-
-  -----------------------------------------------------------------------
-  File                   Description
-  ---------------------- ------------------------------------------------
-  `index.html`           The main Valentine's page with the message and
-                         interactive buttons ❤️
-
-  `README.md`            This documentation file 📄
-  -----------------------------------------------------------------------
-
-## 🚀 How to Use
-
-1.  Clone the repository:
-
-    ``` sh
-    git clone https://github.com/root60/WillYouBeMyValentine.git
-    ```
-
-2.  Open `index.html` in your browser to view the Valentine message.
-
-## ❤️ Want to Improve It?
-
-Feel free to add:
-
--   CSS for styling (make it look prettier 🎨)
--   Animations or sound effects 🥰
--   A button to send this message via social media or email ✉️
-
-## 📄 License
-
-This project is open source --- feel free to reuse or customize it!
+```{=html}
+<p>
+```
+`<a href="https://github.com/root60/WillYouBeMyValentine">`{=html}
+`<img src="https://img.shields.io/badge/Status-Live-success?style=for-the-badge">`{=html}
+`</a>`{=html}
+`<img src="https://img.shields.io/badge/Made%20With-HTML5-orange?style=for-the-badge&logo=html5">`{=html}
+`<img src="https://img.shields.io/badge/Love-100%25-red?style=for-the-badge">`{=html}
+```{=html}
+</p>
+```
+:::
 
 ------------------------------------------------------------------------
 
-Made with 💖 by **root60**
+## ✨ Overview
+
+**Will You Be My Valentine?** is a fun and heartwarming interactive
+webpage designed to ask the most important question in the cutest way
+possible.
+
+With a simple interface and playful interaction, this project creates a
+sweet digital moment for someone special.
+
+------------------------------------------------------------------------
+
+## 🎯 Features
+
+-   💌 Clean and minimal Valentine design\
+-   ❤️ Interactive **YES / NO** buttons\
+-   🎉 Celebration message on acceptance\
+-   🌐 Works instantly in any browser\
+-   📱 Lightweight and responsive
+
+------------------------------------------------------------------------
+
+## 📂 Project Structure
+
+    WillYouBeMyValentine/
+    │
+    ├── index.html   # Main interactive page
+    └── README.md    # Project documentation
+
+------------------------------------------------------------------------
+
+## 🚀 How to Run
+
+1.  Clone the repository:
+
+    ``` bash
+    git clone https://github.com/root60/WillYouBeMyValentine.git
+    ```
+
+2.  Open `index.html` in your browser.
+
+That's it --- your Valentine experience is ready! 💕
+
+------------------------------------------------------------------------
+
+## 🎨 Customization Ideas
+
+Make it even more special by adding:
+
+-   CSS animations (floating hearts, glow effects)
+-   Background music 🎵
+-   Confetti effects 🎊
+-   A personalized name
+-   A hosted live demo via GitHub Pages
+
+------------------------------------------------------------------------
+
+## 🌍 Deploy on GitHub Pages
+
+1.  Go to **Settings** → **Pages**
+2.  Select branch: `main`
+3.  Save and get your live link
+
+Now you can share the link with someone special 💘
+
+------------------------------------------------------------------------
+
+## 🤝 Contributing
+
+Feel free to fork this repository and enhance the experience. Pull
+requests are welcome!
+
+------------------------------------------------------------------------
+
+::: {align="center"}
+### Made with ❤️ by root60
+:::
