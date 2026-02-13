@@ -1,22 +1,8 @@
-::: {align="center"}
+
 # 💖 Will You Be My Valentine?
 
 ### A Cute & Interactive Valentine Web Experience
 
-```{=html}
-<p>
-```
-`<a href="https://github.com/root60/WillYouBeMyValentine">`{=html}
-`<img src="https://img.shields.io/badge/Status-Live-success?style=for-the-badge">`{=html}
-`</a>`{=html}
-`<img src="https://img.shields.io/badge/Made%20With-HTML5-orange?style=for-the-badge&logo=html5">`{=html}
-`<img src="https://img.shields.io/badge/Love-100%25-red?style=for-the-badge">`{=html}
-```{=html}
-</p>
-```
-:::
-
-------------------------------------------------------------------------
 
 ## ✨ Overview
 
@@ -91,6 +77,6 @@ requests are welcome!
 
 ------------------------------------------------------------------------
 
-::: {align="center"}
+
 ### Made with ❤️ by root60
-:::
+
